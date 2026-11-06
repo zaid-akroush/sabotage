@@ -46,4 +46,25 @@ The client sends only a direction (`{ dx, dy }`, message `player:move`) every fr
 The server clamps it to -1..1, moves players at a fixed speed on a 60 Hz tick, and
 syncs `x`/`y` back through the room state. Clients never send positions.
 
+## Working together
+
+1. `git pull`, then `git checkout -b <your-name>/<feature>` (for example `ali/jump`).
+2. Make small changes. Run `npm run build && npm test` before you push.
+3. Push the branch and open a pull request to `master`. CI builds and tests it.
+4. Merge only when CI is green, so `master` always runs.
+
+Who owns what (see the two guides for details):
+
+| Area | Files | Owner |
+|---|---|---|
+| Message names and payloads | `shared/src/` | Everyone. Announce changes first |
+| Maps | `shared/maps/` | Frontend 2 and backend |
+| Room, networking | `server/src/rooms/`, `server/src/index.ts` | Backend 1 |
+| State and game rules | `server/src/state.ts`, `server/src/movement.ts` (+ new rule files) | Backend 2 |
+| Player input, movement, combat | `client/src/PlayerController.ts` | Frontend 1 |
+| Level, puzzles, HUD | new files in `client/src/` (e.g. `Level.ts`, `HUD.ts`) | Frontend 2 |
+| Colyseus client, scene wiring | `client/src/network.ts`, `client/src/scenes/GameScene.ts` | Shared. Keep it thin |
+
+Using Claude Code? It reads `CLAUDE.md` automatically.
+
 If you edit `shared/src`, rerun `npm run dev` (or `npm run build -w shared`) so the server and client pick up the change.
