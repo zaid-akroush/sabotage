@@ -1,0 +1,21 @@
+{
+  "name": "@sabotage/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "tsx --test src/**/*.test.ts"
+  },
+  "dependencies": {
+    "@colyseus/schema": "^3.0.76",
+    "@sabotage/shared": "*",
+    "colyseus": "~0.16.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0"
+  }
+}
